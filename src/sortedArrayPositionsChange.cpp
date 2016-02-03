@@ -12,8 +12,10 @@ NOTES:
 */
 
 #include <stdio.h>
-
+#include<algorithm>
+using namespace std;
 void * sortedArrayPositionsChange(int *Arr, int len)
 {
+std:sort(Arr, Arr + len);
 	return NULL;
 }

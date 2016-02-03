@@ -19,8 +19,47 @@ NOTES:
 struct student {
 	char *name;
 	int score;
-};
+}temp;
+
+void removeRemainingElements(struct student *students, int k)
+{
+	int i = 0;
+	struct student temp[10];
+	for (i = 0; i < k; i++)
+	{
+		temp[i] = students[i];
+	}
+	students = temp;
+}
 
 struct student ** topKStudents(struct student *students, int len, int K) {
-	return NULL;
+	int i, j;
+	if (K <= 0)
+		return NULL;
+
+	struct student **result = (struct student **)malloc(K * sizeof(struct student *));
+	for (i = 0; i < K; i++)
+		result[i] = (struct student *)malloc(sizeof(struct student));
+
+	for (i = 0; i < len; i++)
+	{
+		for (j = i + 1; j < len; j++)
+		{
+			if (students[i].score < students[j].score)
+			{
+				temp = students[i];
+				students[i] = students[j];
+				students[j] = temp;
+			}
+		}
+	}
+
+	removeRemainingElements(students, K);
+
+	for (i = 0; i<K; i++)
+	{
+		result[i]->score = students[i].score;
+		result[i]->name = students[i].name;
+	}
+	return result;
 }
